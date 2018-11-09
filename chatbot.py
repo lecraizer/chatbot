@@ -255,7 +255,7 @@ def processSpecialAnswer(cid, resposta):
 
 	elif hasTag("►CSV ISP ANO◄", resposta):
 
-		print resposta.split(' ; ')[1:]
+		print(resposta.split(' ; ')[1:])
 
 
 		# variables = resposta.split(' ; ')[1:]
