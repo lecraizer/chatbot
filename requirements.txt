@@ -20,7 +20,6 @@ pickleshare==0.7.4
 prompt-toolkit==1.0.15
 pycrypto==2.6.1
 Pygments==2.2.0
-pygobject==3.26.1
 pyTelegramBotAPI==3.6.6
 python-dateutil==2.7.5
 pytz==2018.7
