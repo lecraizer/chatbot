@@ -93,6 +93,11 @@
 	</category>
 
 	<category>
+		<pattern>* SABE * IDEB</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
+	</category>
+
+	<category>
 		<pattern>* FALE SOBRE * IDEB</pattern>
 		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
 	</category>
@@ -403,7 +408,7 @@
 		- Sequestros;\n
 		- Estupros.\n\n
 
-		Sobre qual você quer saber?
+		Sobre qual tipo de crime você quer saber?
 
 		#button#Homicidios;Estupros;Furtos;
 		</template>
@@ -456,6 +461,49 @@
 			</template>
 		</category>
 
+		<category>
+			<pattern>* HOMICIDIOS CULPOSOS OCORRERAM EM *</pattern>
+			<template>
+				<think>
+					<set name="dado">hom_culposo</set>
+					<set name="municipio"><star index="2"</set>
+					<set name="topic">ANO</set>
+				</think>
+				Quer saber sobre algum ano específico?
+
+				#button#2014;2015;2016;2017;2018;Todos os anos;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS CULPOSOS QUE OCORRERAM EM *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS CULPOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS OCORRERAM EM *</pattern>
+			<template>
+				<think>
+					<set name="dado">hom_doloso</set>
+					<set name="municipio"><star index="2"</set>
+					<set name="topic">ANO</set>
+				</think>
+				Quer saber sobre algum ano específico?
+
+				#button#2014;2015;2016;2017;2018;Todos os anos;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS QUE OCORRERAM EM *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS DOLOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+
 	</topic>
 
 	<topic name="HOMICIDIO">
@@ -466,7 +514,7 @@
 					<set name="topic">MUNICIPIO</set>
 					<set name="dado">hom_culposo</set>
 				</think>
-				Certo, de qual município você quer saber?
+				Ok, de qual município você quer saber?
 			</template>
 		</category>
 
@@ -484,7 +532,7 @@
 					<set name="topic">MUNICIPIO</set>
 					<set name="dado">hom_doloso</set>
 				</think>
-				Certo, de qual município você quer saber?
+				Ok, de qual município você quer saber?
 			</template>
 		</category>
 
@@ -502,7 +550,7 @@
 					<set name="topic">MUNICIPIO</set>
 					<set name="dado">hom_culposo | hom_doloso</set>
 				</think>
-				Certo, de qual município você quer saber?
+				Ok, de qual município você quer saber?
 			</template>
 		</category>
 
