@@ -167,7 +167,6 @@ def processSpecialAnswer(cid, resposta):
 			for col in df_temp.columns:
 				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
 
-			print '\n\n=======   ', municipio, '   ========\n\n'
 			return string
 		# log.info(resposta)
 		return 'Desculpe, mas não temos informações sobre o índice desejado'
@@ -248,7 +247,6 @@ def processSpecialAnswer(cid, resposta):
 			for col in df_temp.columns:
 				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
 
-			print '\n\n=======   ', municipio, '   ========\n\n'
 			return string
 		return 'Desculpe, mas não temos informações sobre o índice desejado'
 
