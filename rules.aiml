@@ -63,19 +63,37 @@
 		<template><srai><star index = "1"/> BASES DE DADOS <star index = "2"/> DISPONIVEIS</srai></template>
 	</category>
 
+	<category>
+		<pattern>* VOCE SABE</pattern>
+		<template>Atualmente temos acesso às seguintes bases de dados:\n
+			- IDEB: Índice de Desenvolvimento da Educação Básica;\n
+			- ISP: Instituto de Segurança Pública.\n\n
+			Sobre qual base deseja obter informações?
+
+			#button#IDEB;ISP;
+		</template>
+	</category>
+
 
 	<!-- Informações base IDEB -->
 	<category>
 		<pattern>* TEMOS * BASE * IDEB</pattern>
-		<template>Temos, para os anos 2005 até 2015, os seguintes dados para cada município do Rio de Janeiro:\n
-		- IDEB do município por ano;\n
-		- Meta projetada do município no ano;\n
-		- Se o município atingiu a sua meta naquele ano.
+		<template>
+			<think><set name="topic">DADOS IDEB</set></think>
+			Temos, para os anos 2005 até 2015, os seguintes dados para cada município do Rio de Janeiro:\n
+			- IDEB do município por ano;\n
+			- Meta projetada do município no ano;\n
+			- Se o município atingiu a sua meta naquele ano.
 		</template>
 	</category>
 
 	<category>
-		<pattern>* FALE SOBRE * BASE * IDEB</pattern>
+		<pattern>IDEB</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
+	</category>
+
+	<category>
+		<pattern>* FALE SOBRE * IDEB</pattern>
 		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
 	</category>
 
@@ -89,277 +107,288 @@
 		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
 	</category>
 
-
-	<!-- Município atinge meta ano -->
 	<category>
-		<pattern>O MUNICIPIO * CUMPRE * META * IDEB PARA O ANO DE *</pattern>
-		<template>►CSV IDEB ATING META ANO◄ ; <star index = "1"/> ; <star index = "4"/></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * CUMPRE * META * IDEB PARA *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * CUMPRE * META * IDEB NO ANO DE *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * CUMPRE * META * IDEB EM *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>* CUMPRE * META * IDEB EM *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * ATINGE * META * IDEB PARA O ANO DE *</pattern>
-		<template>►CSV IDEB ATING META ANO◄ ; <star index = "1"/> ; <star index = "4"/></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * ATINGE * META * IDEB PARA *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * ATINGE * META * IDEB NO ANO DE *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>O MUNICIPIO * ATINGE * META * IDEB EM *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>* ATINGE * META * IDEB PARA O ANO DE  *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>* ATINGE * META * IDEB PARA *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>* ATINGE * META * IDEB NO ANO DE *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>* ATINGE * META * IDEB EM *</pattern>
-		<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		<pattern>* SABER SOBRE * IDEB</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO IDEB</srai></template>
 	</category>
 
 
-<!-- Município atinge meta geral -->
-	<category>
-		<pattern>O MUNICIPIO * CUMPRE * META * IDEB</pattern>
-		<template>►CSV IDEB ATING META◄ ; <star index = "1"/></template>
-	</category>
 
-	<category>
-		<pattern>O MUNICIPIO * ATINGE * META * IDEB</pattern>
-		<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
-	</category>
+	<topic name="DADOS IDEB">
 
-	<category>
-		<pattern>* CUMPRE * META * IDEB</pattern>
-		<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
-	</category>
+		<!-- Município atinge meta ano -->
+		
+		<category>
+			<pattern>O MUNICIPIO * CUMPRE * META * IDEB PARA O ANO DE *</pattern>
+			<template>►CSV IDEB ATING META ANO◄ ; <star index = "1"/> ; <star index = "4"/></template>
+		</category>
 
-	<category>
-		<pattern>* ATINGE * META * IDEB</pattern>
-		<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * CUMPRE * META * IDEB PARA *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
+		<category>
+			<pattern>O MUNICIPIO * CUMPRE * META * IDEB NO ANO DE *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<!-- Meta município por ano -->
-	<category>
-		<pattern>* META * IDEB * MUNICIPIO * PARA O ANO DE *</pattern>
-		<template>►CSV IDEB META ANO◄ ; <star index = "4"/> ; <star index = "5"/></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * CUMPRE * META * IDEB EM *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * MUNICIPIO * PARA *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
-	</category>
+		<category>
+			<pattern>* CUMPRE * META * IDEB EM *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * MUNICIPIO * NO ANO DE *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * ATINGE * META * IDEB PARA O ANO DE *</pattern>
+			<template>►CSV IDEB ATING META ANO◄ ; <star index = "1"/> ; <star index = "4"/></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * MUNICIPIO * EM *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * ATINGE * META * IDEB PARA *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * PARA O ANO DE *</pattern>
-		<template>►CSV IDEB META ANO◄ ; <star index = "3"/> ; <star index = "4"/></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * ATINGE * META * IDEB NO ANO DE *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * PARA *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * ATINGE * META * IDEB EM *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * NO ANO DE *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
+		<category>
+			<pattern>* ATINGE * META * IDEB PARA O ANO DE  *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB * EM *</pattern>
-		<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
-	</category>
+		<category>
+			<pattern>* ATINGE * META * IDEB PARA *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>META IDEB MUNICIPIO * PARA O ANO DE *</pattern>
-		<template>►CSV IDEB META ANO◄ ; <star index = "1"/> ; <star index = "2"/></template>
-	</category>
+		<category>
+			<pattern>* ATINGE * META * IDEB NO ANO DE *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>META IDEB MUNICIPIO * PARA *</pattern>
-		<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>META IDEB MUNICIPIO * NO ANO DE *</pattern>
-		<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>META IDEB MUNICIPIO * EM *</pattern>
-		<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
-
-	<category>
-		<pattern>META * IDEB * EM *</pattern>
-		<template>►CSV IDEB META ANO◄ ; <star index = "2"/> ; <star index = "3"/></template>
-	</category>
-
-	<category>
-		<pattern>META IDEB * EM *</pattern>
-		<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>* ATINGE * META * IDEB EM *</pattern>
+			<template><srai>O MUNICIPIO <star index = "1"/> ATINGE <star index = "2"/> META <star index = "3"/> IDEB PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
 
-	<!-- Meta município geral -->
-	<category>
-		<pattern>* META * IDEB * MUNICIPIO *</pattern>
-		<template>►CSV IDEB META◄ ; <star index = "4"/></template>
-	</category>
+	<!-- Município atinge meta geral -->
+		<category>
+			<pattern>O MUNICIPIO * CUMPRE * META * IDEB</pattern>
+			<template>►CSV IDEB ATING META◄ ; <star index = "1"/></template>
+		</category>
 
-	<category>
-		<pattern>* META * IDEB *</pattern>
-		<template>►CSV IDEB META◄ ; <star index = "3"/></template>
-	</category>
+		<category>
+			<pattern>O MUNICIPIO * ATINGE * META * IDEB</pattern>
+			<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
+		</category>
 
-	<category>
-		<pattern>META IDEB MUNICIPIO *</pattern>
-		<template>►CSV IDEB META◄ ; <star/></template>
-	</category>
+		<category>
+			<pattern>* CUMPRE * META * IDEB</pattern>
+			<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
+		</category>
 
-	<category>
-		<pattern>META * IDEB *</pattern>
-		<template>►CSV IDEB META◄ ; <star index = "2"/></template>
-	</category>
-
-	<category>
-		<pattern>META IDEB *</pattern>
-		<template><srai>META IDEB MUNICIPIO <star/></srai></template>
-	</category>
+		<category>
+			<pattern>* ATINGE * META * IDEB</pattern>
+			<template><srai> O MUNICIPIO <star index = "1"/> CUMPRE <star index = "2"/> META <star index = "3"/> IDEB</srai></template>
+		</category>
 
 
-	<!-- IDEB município por ano -->
-	<category>
-		<pattern>* IDEB DO MUNICIPIO * PARA O ANO DE *</pattern>
-		<template>►CSV IDEB IDEB ANO◄ ; <star index = "2"/> ; <star index = "3"/></template>
-	</category>
+		<!-- Meta município por ano -->
+		<category>
+			<pattern>* META * IDEB * MUNICIPIO * PARA O ANO DE *</pattern>
+			<template>►CSV IDEB META ANO◄ ; <star index = "4"/> ; <star index = "5"/></template>
+		</category>
 
-	<category>
-		<pattern>* IDEB DO MUNICIPIO * PARA *</pattern>
-		<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * MUNICIPIO * PARA *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* IDEB DO MUNICIPIO * NO ANO DE *</pattern>
-		<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * MUNICIPIO * NO ANO DE *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>* IDEB DO MUNICIPIO * EM *</pattern>
-		<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * MUNICIPIO * EM *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> MUNICIPIO <star index = "4"/> PARA O ANO DE <star index = "5"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB MUNICIPIO * PARA O ANO DE *</pattern>
-		<template>►CSV IDEB IDEB ANO◄ ; <star index = "1"/> ; <star index = "2"/></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * PARA O ANO DE *</pattern>
+			<template>►CSV IDEB META ANO◄ ; <star index = "3"/> ; <star index = "4"/></template>
+		</category>
 
-	<category>
-		<pattern>IDEB MUNICIPIO * PARA *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * PARA *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB MUNICIPIO * NO ANO DE *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * NO ANO DE *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB MUNICIPIO * EM *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB * EM *</pattern>
+			<template><srai><star index = "1"/> META <star index = "2"/> IDEB <star index = "3"/> PARA O ANO DE <star index = "4"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB * PARA O ANO DE *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>META IDEB MUNICIPIO * PARA O ANO DE *</pattern>
+			<template>►CSV IDEB META ANO◄ ; <star index = "1"/> ; <star index = "2"/></template>
+		</category>
 
-	<category>
-		<pattern>IDEB * PARA *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>META IDEB MUNICIPIO * PARA *</pattern>
+			<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB * NO ANO DE *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>META IDEB MUNICIPIO * NO ANO DE *</pattern>
+			<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
 
-	<category>
-		<pattern>IDEB * EM *</pattern>
-		<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>META IDEB MUNICIPIO * EM *</pattern>
+			<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>META * IDEB * EM *</pattern>
+			<template>►CSV IDEB META ANO◄ ; <star index = "2"/> ; <star index = "3"/></template>
+		</category>
+
+		<category>
+			<pattern>META IDEB * EM *</pattern>
+			<template><srai>META IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
 
 
-	<!-- IDEB município geral -->
-	<category>
-		<pattern>* IDEB DO MUNICIPIO *</pattern>
-		<template>►CSV IDEB IDEB◄ ; <star index = "2"/></template>
-	</category>
+		<!-- Meta município geral -->
+		<category>
+			<pattern>* META * IDEB * MUNICIPIO *</pattern>
+			<template>►CSV IDEB META◄ ; <star index = "4"/></template>
+		</category>
 
-	<category>
-		<pattern>* IDEB *</pattern>
-		<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/></srai></template>
-	</category>
+		<category>
+			<pattern>* META * IDEB *</pattern>
+			<template>►CSV IDEB META◄ ; <star index = "3"/></template>
+		</category>
 
-	<category>
-		<pattern>IDEB MUNICIPIO *</pattern>
-		<template>►CSV IDEB IDEB◄ ; <star/></template>
-	</category>
+		<category>
+			<pattern>META IDEB MUNICIPIO *</pattern>
+			<template>►CSV IDEB META◄ ; <star/></template>
+		</category>
 
-	<category>
-		<pattern>IDEB *</pattern>
-		<template><srai>IDEB MUNICIPIO <star/></srai></template>
-	</category>
+		<category>
+			<pattern>META * IDEB *</pattern>
+			<template>►CSV IDEB META◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>META IDEB *</pattern>
+			<template><srai>META IDEB MUNICIPIO <star/></srai></template>
+		</category>
+
+
+		<!-- IDEB município por ano -->
+		<category>
+			<pattern>* IDEB DO MUNICIPIO * PARA O ANO DE *</pattern>
+			<template>►CSV IDEB IDEB ANO◄ ; <star index = "2"/> ; <star index = "3"/></template>
+		</category>
+
+		<category>
+			<pattern>* IDEB DO MUNICIPIO * PARA *</pattern>
+			<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* IDEB DO MUNICIPIO * NO ANO DE *</pattern>
+			<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* IDEB DO MUNICIPIO * EM *</pattern>
+			<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/> PARA O ANO DE <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB MUNICIPIO * PARA O ANO DE *</pattern>
+			<template>►CSV IDEB IDEB ANO◄ ; <star index = "1"/> ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>IDEB MUNICIPIO * PARA *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB MUNICIPIO * NO ANO DE *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB MUNICIPIO * EM *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB * PARA O ANO DE *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB * PARA *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB * NO ANO DE *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB * EM *</pattern>
+			<template><srai>IDEB MUNICIPIO <star index = "1"/> PARA O ANO DE <star index = "2"/></srai></template>
+		</category>
+
+
+		<!-- IDEB município geral -->
+		<category>
+			<pattern>* IDEB DO MUNICIPIO *</pattern>
+			<template>►CSV IDEB IDEB◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>* IDEB *</pattern>
+			<template><srai><star index = "1"/> IDEB DO MUNICIPIO <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>IDEB MUNICIPIO *</pattern>
+			<template>►CSV IDEB IDEB◄ ; <star/></template>
+		</category>
+
+		<category>
+			<pattern>IDEB *</pattern>
+			<template><srai>IDEB MUNICIPIO <star/></srai></template>
+		</category>
+
+	</topic>
 
 
 	<!-- PARA A BASE DO ISP -->
@@ -372,16 +401,21 @@
 		- Roubos;\n
 		- Furtos;\n
 		- Sequestros;\n
-		- Estupros.\n
+		- Estupros.\n\n
 
 		Sobre qual você quer saber?
 
-		#button#homicidios;estupros;furtos;
+		#button#Homicidios;Estupros;Furtos;
 		</template>
 	</category>
 
-	<!-- <category>
-		<pattern>* FALE SOBRE * BASE * ISP</pattern>
+	<category>
+		<pattern>ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* FALE SOBRE * ISP</pattern>
 		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
 	</category>
 
@@ -393,20 +427,16 @@
 	<category>
 		<pattern>* COLUNAS * BASE * ISP</pattern>
 		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
-	</category> -->
+	</category>
+
+	<category>
+		<pattern>* SABER SOBRE * ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
 
 	<topic name="DADOS ISP">
 
 		<!-- Homicídios -->
-
-
-		<category>
-			<pattern>*</pattern>
-			<template>
-				ENTENDI
-			</template>
-		</category>
-
 		<category>
 			<pattern>HOMICIDIOS</pattern>
 			<template>
@@ -415,7 +445,7 @@
 				</think>
 				Sobre qual tipo de homicídio você quer saber?
 
-				#button#HOMICIDIO DOLOSO;HOMICIDIO CULPOSO;Todos;
+				#button#Homicidio culposo;Homicidio doloso;Todos os homicídios;
 			</template>
 		</category>
 
@@ -434,7 +464,7 @@
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
-					<set name="dado">hom culposo</set>
+					<set name="dado">hom_culposo</set>
 				</think>
 				Certo, de qual município você quer saber?
 			</template>
@@ -466,11 +496,11 @@
 		</category>
 
 		<category>
-			<pattern>TODOS</pattern>
+			<pattern>TODOS OS HOMICIDIOS</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
-					<set name="dado">homicidios</set>
+					<set name="dado">hom_culposo | hom_doloso</set>
 				</think>
 				Certo, de qual município você quer saber?
 			</template>
@@ -532,20 +562,11 @@
 					<set name="ano_selecionado"><star/></set>
 					<set name="topic">DADOS ISP</set>
 				</think>
-				Certo, ja vou buscar sua informação.
 				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
 			</template>
 		</category>
 
 	</topic>
-
-
-	<!-- Homicídios dolosos município por ano -->
-	<!-- <category>
-		<pattern>* MUNICIPIO * PARA O ANO DE *</pattern>
-		<template>►CSV ISP ANO◄ ; <star index = "1"/> ; <star index = "3"/> ; <star index = "4"/></template>
-	</category> -->
-
 
 
 	<!-- RESPOSTAS PARA CASO NÃO ENTRE EM NENHUM DOS PADRÕES ACIMA -->

@@ -22,13 +22,13 @@ aimlMgrDict = {}
 df_ideb = pd.read_csv('tabelas/educ_ideb_rede_municipal.csv')
 
 # open csv criminal database
-df_crim = pd.read_csv('tabelas/BaseMunicipioMensal.csv', encoding = "ISO-8859-1", sep=";")
+df_isp = pd.read_csv('tabelas/BaseMunicipioMensal.csv', encoding = "ISO-8859-1", sep=";")
 
 # month converter: written way to number
-month_converter = {'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12}
+# month_converter = {'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12}
 
 # column converter for ISP database
-# isp_column_converter = {'homicidio doloso': 'hom_doloso', 'homicidio culposo': 'hom_culposo', 'estupro': 'estupro', 'sequestro': 'sequestro'}
+isp_column_converter = {u'hom_doloso': u'homicídios dolosos', u'hom_culposo': u'homicídios culposos', u'hom_culposo | hom_doloso': u'homicídios',  u'estupro': u'estupros', u'sequestro': u'sequestros'}
 
 def beforeTag(tag, frase):
 	if hasTag(tag,frase):
@@ -255,23 +255,32 @@ def processSpecialAnswer(cid, resposta):
 
 	elif hasTag("►CSV ISP ANO◄", resposta):
 
-		print(resposta.split(' ; ')[1:])
+		sendAnswer(cid, "Certo, ja vou buscar sua informação.")
 
+		variables = resposta.split(' ; ')[1:]
 
-		# variables = resposta.split(' ; ')[1:]
-		# column = variables[0]
-		# if column in isp_column_converter.keys():
-		# 	col = isp_column_converter 
-		# municipio = variables[1]
-		# municipio = re.sub('^d[oae] ', '', municipio)
-		# year = variables[2]
+		col = variables[0]
 
+		municipio = variables[1]
+		year = int(variables[2])
+		
+		new_df = df_isp[df_isp['vano'] == year]
+		new_df = new_df[new_df['fmun'].str.lower() == municipio.lower()]
+		if ' | ' in col:
+			print '\n\n | ta incluso \n\n'
+			col1 = col.split(' | ')[0]
+			col2 = col.split(' | ')[1]
 
-
+			print col1, col2, '\n\n'
+			total = sum(new_df[col1]) + sum(new_df[col2])
+			print total
+		else:
+			total = sum(new_df[col])
+		municipio = new_df['fmun'].tolist()[0]
+		string = municipio + ' tem uma quantidade total de ' + str(total) + ' ' + isp_column_converter[col] + ' para o ano de ' + str(year) + '.'
+		return [string, "Deseja saber algo mais? #button#Homicidios;Estupros;Furtos;Quero saber sobre a base do IDEB"]
 
 	return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
-
-
 
 
 
@@ -352,7 +361,11 @@ def listener(messages):
 				if not reservedCommands(cid, text):
 					answer = userSession.mensagem(text)
 					answer = processSpecialAnswer(cid, answer)
-					sendAnswer(cid, answer)
+					if type(answer) == list:
+						for ans in answer:
+							sendAnswer(cid, ans)
+					else:
+						sendAnswer(cid, answer)
 			
 			elif m.content_type == 'location':
 				location = m.location
