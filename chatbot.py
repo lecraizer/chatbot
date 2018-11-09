@@ -28,7 +28,8 @@ df_isp = pd.read_csv('tabelas/BaseMunicipioMensal.csv', encoding = "ISO-8859-1",
 # month_converter = {'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12}
 
 # column converter for ISP database
-isp_column_converter = {u'hom_doloso': u'homicídios dolosos', u'hom_culposo': u'homicídios culposos', u'hom_culposo | hom_doloso': u'homicídios',  u'estupro': u'estupros', u'sequestro': u'sequestros'}
+isp_column_converter = {u'hom_doloso': u'homicídios dolosos', u'hom_culposo': u'homicídios culposos', u'hom_culposo | hom_doloso': u'homicídios', u'estupro': u'estupros', u'sequestro': u'sequestros', u'latrocinio': u'latrocinios', u'pessoas_desaparecidas': u'pessoas desaparecidas', u'estelionato': u'estelionatos', u'roubo_comercio': u'roubos no comércio', u'roubo_residencia': u'roubos de residência', u'roubo_veiculo': u'roubos de veículos', u'roubo_carga': u'roubo_carga', u'roubo_transeunte': u'roubo_transeunte', u'roubo_em_coletivo': u'roubo_em_coletivo', u'roubo_banco': u'roubos de banco', u'roubo_cx_eletronico': u'roubos de caixa eletrônico', u'roubo_celular': u'roubos de celular', u'roubo_conducao_saque': u'roubos por condução de saque', u'roubo_bicicleta': u'roubos de bicicleta', u'outros_roubos': u'de outros tipos de roubo', u'total_roubos': u'roubos', u'furto_veiculos': u'furtos de veículo', u'furto_bicicleta': u'furtos de bicicleta', u'outros_furtos': u'de outros furtos', u'total_furtos': u'furtos'}
+
 
 def beforeTag(tag, frase):
 	if hasTag(tag,frase):
@@ -265,20 +266,21 @@ def processSpecialAnswer(cid, resposta):
 		year = int(variables[2])
 		
 		new_df = df_isp[df_isp['vano'] == year]
+		if len(new_df) == 0:
+			return 'Desculpe, não temos informações para o ano correspondente.'
 		new_df = new_df[new_df['fmun'].str.lower() == municipio.lower()]
+		if len(new_df) == 0:
+			return 'Desculpe, não temos informações para o município correspondente.'
+
 		if ' | ' in col:
-			print '\n\n | ta incluso \n\n'
 			col1 = col.split(' | ')[0]
 			col2 = col.split(' | ')[1]
-
-			print col1, col2, '\n\n'
 			total = sum(new_df[col1]) + sum(new_df[col2])
-			print total
 		else:
 			total = sum(new_df[col])
 		municipio = new_df['fmun'].tolist()[0]
 		string = municipio + ' tem uma quantidade total de ' + str(total) + ' ' + isp_column_converter[col] + ' para o ano de ' + str(year) + '.'
-		return [string, "Deseja saber algo mais? #button#Homicidios;Estupros;Furtos;Quero saber sobre a base do IDEB"]
+		return [string, "Deseja saber algo mais? #button#Homicidios;Latrocinios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;Quero saber sobre a base do IDEB"]
 
 	return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
 
