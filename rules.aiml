@@ -36,34 +36,6 @@
 
 	<!-- Informações gerais -->
 	<category>
-		<pattern>* BASES DE DADOS * DISPONIVEIS</pattern>
-		<template>Atualmente temos acesso às seguintes bases de dados:\n
-			- IDEB: Índice de Desenvolvimento da Educação Básica;\n
-			- ISP: Instituto de Segurança Pública.
-		</template>
-	</category>
-
-	<category>
-		<pattern>* DADOS * DISPONIVEIS</pattern>
-		<template><srai><star index = "1"/> BASES DE DADOS <star index = "2"/> DISPONIVEIS</srai></template>
-	</category>
-
-	<category>
-		<pattern>* DADOS * DISPONIVEL</pattern>
-		<template><srai><star index = "1"/> BASES DE DADOS <star index = "2"/> DISPONIVEIS</srai></template>
-	</category>
-
-	<category>
-		<pattern>* INFORMACOES * DADOS</pattern>
-		<template><srai><star index = "1"/> BASES DE DADOS <star index = "2"/> DISPONIVEIS</srai></template>
-	</category>
-
-	<category>
-		<pattern>BASES DISPONIVEIS</pattern>
-		<template><srai><star index = "1"/> BASES DE DADOS <star index = "2"/> DISPONIVEIS</srai></template>
-	</category>
-
-	<category>
 		<pattern>* VOCE SABE</pattern>
 		<template>Atualmente temos acesso às seguintes bases de dados:\n
 			- IDEB: Índice de Desenvolvimento da Educação Básica;\n
@@ -72,6 +44,41 @@
 
 			#button#IDEB;ISP;
 		</template>
+	</category>
+
+	<category>
+		<pattern>O QUE * PERGUNTAR</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* VOCE SABE RESPONDER</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* BASES DE DADOS * DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* DADOS * DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* DADOS * DISPONIVEL</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* INFORMACOES * DADOS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>BASES DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
 	</category>
 
 
@@ -483,6 +490,13 @@
 		</category>
 
 		<category>
+			<pattern>* HOMICIDIOS CULPOSOS QUE OCORRERAM NO *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS CULPOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+		<category>
 			<pattern>* HOMICIDIOS DOLOSOS OCORRERAM EM *</pattern>
 			<template>
 				<think>
@@ -503,6 +517,12 @@
 			</template>
 		</category>
 
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS QUE OCORRERAM NO *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS DOLOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
 
 	</topic>
 
