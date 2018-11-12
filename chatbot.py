@@ -8,10 +8,12 @@ import pandas as pd
 import re
 from log import log
 from unidecode import unidecode
+import unicodedata
+import Levenshtein as lev
 # import logManager
 # import woofyManager
+# import imp
 
-#import imp
 #telebot = imp.load_source('telebot', '/home/chatbot/lib/pyTelegramBotAPI/telebot/__init__.py')
 
 # bot = telebot.TeleBot('712212286:AAHeG-tVXy-9rOWWDA9QiW7nPaz1n1r801E') # dev - maquina
@@ -107,12 +109,10 @@ def reservedCommands(cid, pergunta):
 	return False
 
 
-import unicodedata
 def remove_accents(input_str):
     nfkd_form = unicodedata.normalize('NFKD', input_str)
     only_ascii = nfkd_form.encode('ASCII', 'ignore')
     return only_ascii
-
 
 
 def processSpecialAnswer(cid, resposta):
@@ -152,10 +152,14 @@ def processSpecialAnswer(cid, resposta):
 		df_temp = df_temp.sort_values(col + year, ascending=False)
 		df_temp = df_temp.reset_index(drop=True)
 		try:
-			idx = df_temp.index[df_temp['Nome do Município'].str.lower() == municipio.lower()].tolist()[0]
+			idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		except:
-			return 'Desculpe, não temos informações sobre este município'
-
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(municipio, mun)/len(mun) > 0.75:
+					municipio = mun
+				else:
+					return 'Desculpe, não temos informações sobre este município'
+		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		ordem = idx+1
 		ideb = df_temp[col + year][idx]
 		return 'IDEB ' + municipio + ' em ' + year + ': ' + str(ideb) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
@@ -164,7 +168,7 @@ def processSpecialAnswer(cid, resposta):
 	elif hasTag("►CSV IDEB IDEB◄", resposta):
 		municipio = resposta.split(' ; ')[1]
 		municipio = re.sub('^d[oae] ', '', municipio)
-		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
 			col = 'IDEB_AF_M_'
@@ -187,7 +191,7 @@ def processSpecialAnswer(cid, resposta):
 			year = match_year.group(1)
 		else:
 			return 'Desculpe, não entendi.'
-		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
 			col = 'PROJ_AF_M_'
@@ -207,7 +211,7 @@ def processSpecialAnswer(cid, resposta):
 	elif hasTag("►CSV IDEB META◄", resposta):
 		municipio = resposta.split(' ; ')[1]
 		municipio = re.sub('^d[oae] ', '', municipio)	
-		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
 			col = 'PROJ_AF_M_'
@@ -228,7 +232,7 @@ def processSpecialAnswer(cid, resposta):
 			year = match_year.group(1)
 		else:
 			return 'Desculpe, não entendi.'
-		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
 			col = 'Atingiu_a_meta_AF_M_'
@@ -252,7 +256,7 @@ def processSpecialAnswer(cid, resposta):
 	elif hasTag("►CSV IDEB ATING META◄", resposta):
 		municipio = resposta.split(' ; ')[1]
 		municipio = re.sub('^d[oae] ', '', municipio)
-		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
 			col = 'Atingiu_a_meta_AF_M_'
@@ -281,7 +285,7 @@ def processSpecialAnswer(cid, resposta):
 		new_df = df_isp[df_isp['vano'] == year]
 		if len(new_df) == 0:
 			return 'Desculpe, não temos informações para o ano correspondente.'
-		new_df = new_df[new_df['fmun'].str.lower() == municipio.lower()]
+		new_df = new_df[new_df['fmun'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(new_df) == 0:
 			return 'Desculpe, não temos informações para o município correspondente.'
 
@@ -293,11 +297,9 @@ def processSpecialAnswer(cid, resposta):
 			total = sum(new_df[col])
 		municipio = new_df['fmun'].tolist()[0]
 		string = municipio + ' tem uma quantidade total de ' + str(total) + ' ' + isp_column_converter[col] + ' para o ano de ' + str(year) + '.'
-		return [string, "Deseja saber algo mais? #button#Homicidios;Latrocinios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;Quero saber sobre a base do IDEB"]
+		return [string, "Deseja saber algo mais? #button#Homicídios;Latrocínios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;Quero saber sobre a base do IDEB"]
 
 	return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
-
-
 
 
 def sendAnswer(cid, resposta):
@@ -343,8 +345,6 @@ def sendAnswer(cid, resposta):
 		print (inst)
 
 
-
-
 def listener(messages):   
 	for m in messages:
 		try:
@@ -358,14 +358,8 @@ def listener(messages):
 			last_name = oUser.last_name
 			username = oUser.username
 
-			tokens = m.text.split()
-			normalized_tokens = []
-			for token in tokens:
-				if token.islower():
-					normalized_tokens.append(unidecode(token))
-				else:
-					normalized_tokens.append(token)
-			text = ' '.join(normalized_tokens)
+			# removing accent from text
+			text = unidecode(m.text)
 
 			answer = ""
 			

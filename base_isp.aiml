@@ -8,18 +8,18 @@
 		<template>
 		<think><set name="topic">DADOS ISP</set></think>
 		Para os anos de 2014 até 2018, para cada município do Rio de Janeiro, temos dados sobre:\n
-		- Homicidios;\n
-		- Latrocinios;\n
+		- Homicídios;\n
+		- Latrocínios;\n
 		- Roubos;\n
 		- Furtos;\n
 		- Sequestros;\n
 		- Estupros;\n
 		- Pessoas desaparecidas;\n
-		- Estelionato.\n\n
+		- Estelionatos.\n\n
 
 		Sobre qual tipo de crime você quer saber?
 
-		#button#Homicidios;Latrocinios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;
+		#button#Homicídios;Latrocínios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;Quero saber sobre a base do IDEB;
 		</template>
 	</category>
 
@@ -60,7 +60,7 @@
 				</think>
 				Sobre qual tipo de homicídio você quer saber?
 
-				#button#Homicidio culposo;Homicidio doloso;Todos os homicídios;
+				#button#Homicídio culposo;Homicídio doloso;Todos os homicídios;
 			</template>
 		</category>
 
@@ -138,7 +138,7 @@
 				</think>
 				Sobre qual tipo de roubo você quer saber?
 
-				#button#Total de roubos;Roubo comercio;Roubo residencia;Roubo veiculo;Roubo carga;Roubo transeunte;Roubo em coletivo;Roubo banco;Roubo caixa eletronico;Roubo celular;Roubo conducao saque;Roubo bicicleta;Outros roubos;
+				#button#Total de roubos;Roubo em comércio;Roubo em residência;Roubo de veículo;Roubo de carga;Roubo de transeunte;Roubo em coletivo;Roubo em banco;Roubo de caixa eletrônico;Roubo de celular;Roubo de condução de saque;Roubo de bicicleta;Outros roubos;
 			</template>
 		</category>
 
@@ -160,7 +160,7 @@
 				</think>
 				Sobre qual tipo de furto você quer saber?
 
-				#button#Total de furtos;Furto de veiculos;Furto de bicicletas;Outros furtos;
+				#button#Total de furtos;Furto de veículos;Furto de bicicletas;Outros furtos;
 			</template>
 		</category>
 
@@ -328,6 +328,13 @@
 				Ok, de qual município você quer saber?
 			</template>
 		</category>
+
+		<category>
+			<pattern>TODOS OS HOMICIDIOS</pattern>
+			<template>
+				<srai>TOTAL DE HOMICIDIOS</srai>
+			</template>
+		</category>
 	</topic>
 	<!-- FIM DE TIPOS DE HOMICÍDIO -->
 
@@ -336,7 +343,7 @@
 	<topic name="ROUBO">
 
 		<category>
-			<pattern>ROUBO COMERCIO</pattern>
+			<pattern>ROUBO EM COMERCIO</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -347,7 +354,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO RESIDENCIA</pattern>
+			<pattern>ROUBO EM RESIDENCIA</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -358,7 +365,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO VEICULO</pattern>
+			<pattern>ROUBO DE VEICULO</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -369,7 +376,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO CARGA</pattern>
+			<pattern>ROUBO DE CARGA</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -380,7 +387,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO TRANSEUNTE</pattern>
+			<pattern>ROUBO DE TRANSEUNTE</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -403,7 +410,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO BANCO</pattern>
+			<pattern>ROUBO DE BANCO</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -414,7 +421,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO CAIXA ELETRONICO</pattern>
+			<pattern>ROUBO DE CAIXA ELETRONICO</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -425,7 +432,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO CELULAR</pattern>
+			<pattern>ROUBO DE CELULAR</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -436,7 +443,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO CONDUCAO SAQUE</pattern>
+			<pattern>ROUBO DE CONDUCAO DE SAQUE</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
@@ -447,7 +454,7 @@
 		</category>
 
 		<category>
-			<pattern>ROUBO BICICLETA</pattern>
+			<pattern>ROUBO DE BICICLETA</pattern>
 			<template>
 				<think>
 					<set name="topic">MUNICIPIO</set>
