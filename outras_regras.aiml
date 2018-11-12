@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1">
+
+
+	<!-- RESPOSTAS PARA CASO NÃO ENTRE EM NENHUM DOS PADRÕES ACIMA -->
+	<category>
+		<pattern>*</pattern>
+		<template>
+			<random>
+				<li>Me desculpe, não estou entendendo.</li>
+				<li>Poderia ser mais claro?</li>
+				<li>Desculpe, pode repetir por favor?</li>
+			</random>
+		</template>
+	</category>
+
+</aiml>

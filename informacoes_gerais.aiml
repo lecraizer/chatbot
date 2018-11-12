@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1">
+
+
+<!-- Informações gerais -->
+	<category>
+		<pattern>* VOCE SABE</pattern>
+		<template>Atualmente temos acesso às seguintes bases de dados:\n
+			- IDEB: Índice de Desenvolvimento da Educação Básica;\n
+			- ISP: Instituto de Segurança Pública.\n\n
+			Sobre qual base deseja obter informações?
+
+			#button#IDEB;ISP;
+		</template>
+	</category>
+
+	<category>
+		<pattern>O QUE * PERGUNTAR</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* VOCE SABE RESPONDER</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* BASES DE DADOS * DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* DADOS * DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* DADOS * DISPONIVEL</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>* INFORMACOES * DADOS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
+		<pattern>BASES DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+</aiml>

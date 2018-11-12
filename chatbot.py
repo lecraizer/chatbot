@@ -14,7 +14,8 @@ from unidecode import unidecode
 #import imp
 #telebot = imp.load_source('telebot', '/home/chatbot/lib/pyTelegramBotAPI/telebot/__init__.py')
 
-bot = telebot.TeleBot('712212286:AAHeG-tVXy-9rOWWDA9QiW7nPaz1n1r801E') # dev
+# bot = telebot.TeleBot('712212286:AAHeG-tVXy-9rOWWDA9QiW7nPaz1n1r801E') # dev - maquina
+bot = telebot.TeleBot('796929920:AAGiRRwj-_fXv245dDFXX87lh5V4Aw1ItU8') # local (para teste e manutenção)
 
 aimlMgrDict = {}
 
@@ -133,7 +134,11 @@ def processSpecialAnswer(cid, resposta):
 		variables = resposta.split(' ; ')[1:]
 		municipio = variables[0]
 		municipio = re.sub('^d[oae] ', '', municipio)
-		year = variables[1]
+		match_year = re.search('(20\d\d)', variables[1])
+		if match_year:
+			year = match_year.group(1)
+		else:
+			return 'Desculpe, não entendi.'
 		col = 'IDEB_AF_M_'
 		try:
 			df_temp = df_ideb[['Nome do Município', col + year]]
@@ -177,7 +182,11 @@ def processSpecialAnswer(cid, resposta):
 		variables = resposta.split(' ; ')[1:]
 		municipio = variables[0]
 		municipio = re.sub('^d[oae] ', '', municipio)
-		year = variables[1]
+		match_year = re.search('(20\d\d)', variables[1])
+		if match_year:
+			year = match_year.group(1)
+		else:
+			return 'Desculpe, não entendi.'
 		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
@@ -214,7 +223,11 @@ def processSpecialAnswer(cid, resposta):
 		variables = resposta.split(' ; ')[1:]
 		municipio = variables[0]
 		municipio = re.sub('^d[oae] ', '', municipio)
-		year = variables[1]
+		match_year = re.search('(20\d\d)', variables[1])
+		if match_year:
+			year = match_year.group(1)
+		else:
+			return 'Desculpe, não entendi.'
 		df_temp = df_ideb[df_ideb['Nome do Município'].str.lower() == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]

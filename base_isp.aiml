@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1">
+
+
+<!-- PARA A BASE DO ISP -->
+	<category>
+		<pattern>* TEMOS * BASE * ISP</pattern>
+		<template>
+		<think><set name="topic">DADOS ISP</set></think>
+		Para os anos de 2014 até 2018, para cada município do Rio de Janeiro, temos dados sobre:\n
+		- Homicidios;\n
+		- Latrocinios;\n
+		- Roubos;\n
+		- Furtos;\n
+		- Sequestros;\n
+		- Estupros;\n
+		- Pessoas desaparecidas;\n
+		- Estelionato.\n\n
+
+		Sobre qual tipo de crime você quer saber?
+
+		#button#Homicidios;Latrocinios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;
+		</template>
+	</category>
+
+	<category>
+		<pattern>ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* FALE SOBRE * ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* CAMPOS * BASE * ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* COLUNAS * BASE * ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* SABER SOBRE * ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<topic name="DADOS ISP">
+
+
+		<!-- HOMICÍDIOS -->
+		<category>
+			<pattern>HOMICIDIOS</pattern>
+			<template>
+				<think>
+					<set name="topic">HOMICIDIO</set>
+				</think>
+				Sobre qual tipo de homicídio você quer saber?
+
+				#button#Homicidio culposo;Homicidio doloso;Todos os homicídios;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS</pattern>
+			<template>
+				<srai>HOMICIDIOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS CULPOSOS OCORRERAM EM *</pattern>
+			<template>
+				<think>
+					<set name="dado">hom_culposo</set>
+					<set name="municipio"><star index="2"/></set>
+					<set name="topic">ANO</set>
+				</think>
+				Deseja saber sobre algum ano específico?
+
+				#button#2014;2015;2016;2017;2018;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS CULPOSOS QUE OCORRERAM EM *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS CULPOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS CULPOSOS QUE OCORRERAM NO *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS CULPOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS OCORRERAM EM *</pattern>
+			<template>
+				<think>
+					<set name="dado">hom_doloso</set>
+					<set name="municipio"><star index="2"/></set>
+					<set name="topic">ANO</set>
+				</think>
+				Deseja saber sobre algum ano específico?
+
+				#button#2014;2015;2016;2017;2018;Todos os anos;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS QUE OCORRERAM EM *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS DOLOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIOS DOLOSOS QUE OCORRERAM NO *</pattern>
+			<template>
+				<srai><star index = "1"/> HOMICIDIOS DOLOSOS OCORRERAM EM <star index = "2"/></srai>
+			</template>
+		</category>
+		<!-- FIM DE HOMICÍDIOS -->
+		
+
+		<!-- ROUBOS -->
+		<category>
+			<pattern>ROUBOS</pattern>
+			<template>
+				<think>
+					<set name="topic">ROUBO</set>
+				</think>
+				Sobre qual tipo de roubo você quer saber?
+
+				#button#Total de roubos;Roubo comercio;Roubo residencia;Roubo veiculo;Roubo carga;Roubo transeunte;Roubo em coletivo;Roubo banco;Roubo caixa eletronico;Roubo celular;Roubo conducao saque;Roubo bicicleta;Outros roubos;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* ROUBO </pattern>
+			<template>
+				<srai>ROUBOS</srai>
+			</template>
+		</category>
+		<!-- FIM DE ROUBOS -->
+
+
+		<!-- FURTOS -->
+		<category>
+			<pattern>FURTOS</pattern>
+			<template>
+				<think>
+					<set name="topic">FURTO</set>
+				</think>
+				Sobre qual tipo de furto você quer saber?
+
+				#button#Total de furtos;Furto de veiculos;Furto de bicicletas;Outros furtos;
+			</template>
+		</category>
+
+		<category>
+			<pattern>* FURTO </pattern>
+			<template>
+				<srai>FURTOS</srai>
+			</template>
+		</category>
+		<!-- FIM DE FURTOS -->
+
+
+		<!-- LATROCINIOS -->
+		<category>
+			<pattern>LATROCINIOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">latrocinio</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* LATROCINIOS</pattern>
+			<template>
+				<srai>LATROCINIOS</srai>
+			</template>
+		</category>
+		<!-- FIM DE LATROCÍNIOS -->
+
+
+		<!-- SEQUESTROS -->
+		<category>
+			<pattern>SEQUESTROS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">sequestro</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* SEQUESTROS</pattern>
+			<template>
+				<srai>SEQUESTROS</srai>
+			</template>
+		</category>
+		<!-- FIM DE SEQUESTROS -->
+
+
+		<!-- ESTUPROS -->
+		<category>
+			<pattern>ESTUPROS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">estupro</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* ESTUPROS</pattern>
+			<template>
+				<srai>ESTUPROS</srai>
+			</template>
+		</category>
+		<!-- FIM DE ESTUPROS -->
+
+
+		<!-- PESSOAS DESAPARECIDAS -->
+		<category>
+			<pattern>PESSOAS DESAPARECIDAS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">pessoas_desaparecidas</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* PESSOAS DESAPARECIDAS</pattern>
+			<template>
+				<srai>PESSOAS DESAPARECIDAS</srai>
+			</template>
+		</category>
+		<!-- FIM DE PESSOAS DESAPARECIDAS -->
+
+
+		<!-- ESTELIONATOS -->
+		<category>
+			<pattern>ESTELIONATOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">estelionato</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* ESTELIONATOS</pattern>
+			<template>
+				<srai>ESTELIONATOS</srai>
+			</template>
+		</category>
+		<!-- FIM DE ESTELIONATOS -->
+
+	</topic>
+
+
+	<!-- TIPOS DE HOMICÍDIO -->
+	<topic name="HOMICIDIO">
+		<category>
+			<pattern>HOMICIDIO CULPOSO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">hom_culposo</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIO CULPOSO</pattern>
+			<template>
+				<srai>HOMICIDIO CULPOSO</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>HOMICIDIO DOLOSO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">hom_doloso</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* HOMICIDIO DOLOSO</pattern>
+			<template>
+				<srai>HOMICIDIO DOLOSO</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>TOTAL DE HOMICIDIOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">hom_culposo | hom_doloso</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+	</topic>
+	<!-- FIM DE TIPOS DE HOMICÍDIO -->
+
+
+	<!-- TIPOS DE ROUBOS -->
+	<topic name="ROUBO">
+
+		<category>
+			<pattern>ROUBO COMERCIO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_comercio</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO RESIDENCIA</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_residencia</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO VEICULO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_veiculo</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO CARGA</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_carga</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO TRANSEUNTE</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_transeunte</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+
+		<category>
+			<pattern>ROUBO EM COLETIVO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_em_coletivo</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO BANCO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_banco</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO CAIXA ELETRONICO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_cx_eletronico</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO CELULAR</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_celular</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO CONDUCAO SAQUE</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_conducao_saque</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO BICICLETA</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">roubo_bicicleta</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>OUTROS ROUBOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">outros_roubos</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>TOTAL DE ROUBOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">total_roubos</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+	</topic>
+	<!-- FIM DE TIPOS DE ROUBO -->
+
+
+	<!-- TIPOS DE FURTOS -->
+	<topic name="FURTO">
+
+		<category>
+			<pattern>FURTO DE VEICULOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">furto_veiculos</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>FURTO DE BICICLETAS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">furto_bicicleta</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>OUTROS FURTOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">outros_furtos</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>TOTAL DE FURTOS</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO</set>
+					<set name="dado">total_furtos</set>
+				</think>
+				Ok, de qual município você quer saber?
+			</template>
+		</category>
+
+	</topic>
+	<!-- FIM DE TIPOS DE FURTO -->
+
+
+	<topic name="MUNICIPIO">
+
+		<category>
+			<pattern>SOBRE *</pattern>
+			<template>
+				<think>
+					<set name="municipio_selecionado"><star/></set>
+					<set name="topic">ANO</set>
+				</think>
+				Deseja saber sobre algum ano específico?
+
+				#button#2014;2015;2016;2017;2018;
+			</template>
+		</category>
+
+		<category>
+		<pattern>DO *</pattern>
+			<template>
+				<srai>SOBRE <star index="1"/></srai>
+			</template>
+		</category>
+
+		<category>
+		<pattern>* SOBRE *</pattern>
+			<template>
+				<srai>SOBRE <star index="2"/></srai>
+			</template>
+		</category>
+
+		<category>
+		<pattern>* DO *</pattern>
+			<template>
+				<srai>SOBRE <star index="2"/></srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>*</pattern>
+			<template>
+				<srai>SOBRE <star index="1"/></srai>
+			</template>
+		</category>
+
+	</topic>
+
+	<topic name="ANO">
+
+		<category>
+			<pattern>*</pattern>
+			<template>
+				<think>
+					<set name="ano_selecionado"><star/></set>
+					<set name="topic">DADOS ISP</set>
+				</think>
+				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
+			</template>
+		</category>
+
+	</topic>
+
+
+</aiml>

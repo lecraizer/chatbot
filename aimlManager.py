@@ -11,15 +11,15 @@ class aimlManager():
 		self.session_id = random.randint(0,10000)
 		self.kernel = aiml.Kernel()
 		self.timestamp = time.time()
-		self.kernel.learn("rules.aiml")
+		self.kernel.learn("saudacoes.aiml")
+		self.kernel.learn("informacoes_gerais.aiml")
+		self.kernel.learn("base_ideb.aiml")
+		self.kernel.learn("base_isp.aiml")
+		self.kernel.learn("outras_regras.aiml")
+		
 		#self.kernel.respond("load aiml humanizacao")
 		#self.kernel.respond("load aiml processos")
 		#self.kernel.respond("load aiml onibus")
-		#kernel.learn("old/aiml/basic_chatq.aiml")
-		#kernel.learn("old/aiml/dev-translation.aiml")
-		#kernel.learn("old/aiml/les_humanizacao.aiml")
-		#kernel.learn("old/aiml/les_integracao_woofy.aiml")
-		#kernel.learn("old/aiml/les_aprendizado.aiml")
 		#kernel.respond("load aiml processos")
 
 	def brainLearn(self, pattern, template):

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1">
+
+
+<!-- Saudações -->
+	<category>
+		<pattern>OLA *</pattern>
+		<template>Olá, bem vindo ao chatbot do MP. Em que posso ajudá-lo?</template>
+	</category>
+
+	<category>
+		<pattern>OLA</pattern>
+		<template>Olá, bem vindo ao chatbot do MP. Em que posso ajudá-lo?</template>
+	</category>
+
+	<category>
+		<pattern>OI *</pattern>
+		<template><srai>OLA <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>OI</pattern>
+		<template><srai>OLA</srai></template>
+	</category>
+
+	<category>
+		<pattern>COMO VAI *</pattern>
+		<template><srai>OLA <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>COMO VAI</pattern>
+		<template><srai>OLA</srai></template>
+	</category>
+
+</aiml>
