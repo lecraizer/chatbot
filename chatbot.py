@@ -154,11 +154,13 @@ def processSpecialAnswer(cid, resposta):
 		try:
 			idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		except:
+			found = False
 			for mun in set(df_ideb['Nome do Município']):
-				if 1 - lev.distance(municipio, mun)/len(mun) > 0.75:
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
 					municipio = mun
-				else:
-					return 'Desculpe, não temos informações sobre este município'
+					found = True
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
 		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		ordem = idx+1
 		ideb = df_temp[col + year][idx]
@@ -176,7 +178,6 @@ def processSpecialAnswer(cid, resposta):
 			string = 'IDEB ' + municipio + ' :\n\n' 
 			for col in df_temp.columns:
 				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
-
 			return string
 		# log.info(resposta)
 		return 'Desculpe, mas não temos informações sobre o índice desejado'
