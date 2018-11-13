@@ -159,6 +159,7 @@ def processSpecialAnswer(cid, resposta):
 				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
 					municipio = mun
 					found = True
+					break
 			if found == False:
 				return 'Desculpe, não temos informações sobre este município'
 		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
@@ -173,14 +174,24 @@ def processSpecialAnswer(cid, resposta):
 		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
-			col = 'IDEB_AF_M_'
-			df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
-			string = 'IDEB ' + municipio + ' :\n\n' 
-			for col in df_temp.columns:
-				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
-			return string
+		else:
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == unidecode(municipio.lower())]
+					break
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
+	
+		col = 'IDEB_AF_M_'
+		df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
+		string = 'IDEB ' + municipio + ' :\n\n' 
+		for col in df_temp.columns:
+			string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
+		return string
 		# log.info(resposta)
-		return 'Desculpe, mas não temos informações sobre o índice desejado'
 
 
 	elif hasTag("►CSV IDEB META ANO◄", resposta):
@@ -192,21 +203,33 @@ def processSpecialAnswer(cid, resposta):
 			year = match_year.group(1)
 		else:
 			return 'Desculpe, não entendi.'
-		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
-		if len(df_temp) > 0:
-			municipio = df_temp['Nome do Município'].tolist()[0]
-			col = 'PROJ_AF_M_'
-			try:
-				meta = df_temp[col + year].tolist()[0]
-			except:
-				string = 'Desculpe, mas não temos informações sobre este ano. Para o campo correspondente, temos dados sobre os anos: '
-				filter_col = [i for i in df_ideb if i.startswith(col)]
-				string += filter_col[0][-4:]
-				for c in filter_col[1:]:
-					string += ', ' + c[-4:]
-				return string + '.'
-			return 'A meta projetada do IDEB do município ' + municipio + ' em ' + year + ' é de ' + str(meta) + '.'
-		return 'Desculpe, mas não temos informações sobre o índice desejado'
+		col = 'PROJ_AF_M_'
+		try:
+			df_temp = df_ideb[['Nome do Município', col + year]]
+		except:
+			string = 'Desculpe, mas não temos informações sobre este ano. Para o campo correspondente, temos dados sobre os anos: '
+			filter_col = [i for i in df_ideb if i.startswith(col)]
+			string += filter_col[0][-4:]
+			for c in filter_col[1:]:
+				string += ', ' + c[-4:]
+			return string + '.'
+		df_temp = df_temp.sort_values(col + year, ascending=False)
+		df_temp = df_temp.reset_index(drop=True)
+		try:
+			idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
+		except:
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					break
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
+		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
+		ordem = idx+1
+		meta = df_temp[col + year][idx]
+		return 'A meta projetada do IDEB do ' + municipio + ' em ' + year + ': ' + str(meta) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
 
 
 	elif hasTag("►CSV IDEB META◄", resposta):
@@ -215,13 +238,23 @@ def processSpecialAnswer(cid, resposta):
 		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
-			col = 'PROJ_AF_M_'
-			df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
-			string = 'A meta projetada do IDEB do município ' + municipio + ' é:\n\n' 
-			for col in df_temp.columns:
-				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
-			return string
-		return 'Desculpe, mas não temos informações sobre o índice desejado'
+		else:
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == unidecode(municipio.lower())]
+					break
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
+
+		col = 'PROJ_AF_M_'
+		df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
+		string = 'A meta projetada do IDEB do município ' + municipio + ' é:\n\n' 
+		for col in df_temp.columns:
+			string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
+		return string
 
 
 	elif hasTag("►CSV IDEB ATING META ANO◄", resposta):
@@ -233,25 +266,35 @@ def processSpecialAnswer(cid, resposta):
 			year = match_year.group(1)
 		else:
 			return 'Desculpe, não entendi.'
-		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
-		if len(df_temp) > 0:
-			municipio = df_temp['Nome do Município'].tolist()[0]
-			col = 'Atingiu_a_meta_AF_M_'
-			try:
-				booleano = df_temp[col + year].tolist()[0]
-				string = municipio + ' '
-				if booleano == 'NÃO':
-					string += 'não '
-				string += 'cumpre a meta do IDEB no ano de ' + year + '.'
-				return string
-			except:
-				string = 'Desculpe, mas não temos informações sobre este ano. Para o campo correspondente, temos dados sobre os anos: '
-				filter_col = [i for i in df_ideb if i.startswith(col)]
-				string += filter_col[0][-4:]
-				for c in filter_col[1:]:
-					string += ', ' + c[-4:]
-				return string + '.'
-		return 'Desculpe, mas não temos informações sobre o índice desejado'
+		try:
+			idx = df_ideb.index[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
+		except:
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					break
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
+		col = 'Atingiu_a_meta_AF_M_'
+		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == unidecode(municipio.lower())]
+		municipio = df_temp['Nome do Município'].tolist()[0]
+		try:
+			booleano = df_temp[col + year].tolist()[0]
+		except:
+			string = 'Desculpe, mas não temos informações sobre este ano. Para o campo correspondente, temos dados sobre os anos: '
+			filter_col = [i for i in df_ideb if i.startswith(col)]
+			string += filter_col[0][-4:]
+			for c in filter_col[1:]:
+				string += ', ' + c[-4:]
+			return string + '.'
+
+		string = municipio + ' '
+		if booleano == 'NÃO':
+			string += 'não '
+		string += 'cumpre a meta do IDEB no ano de ' + year + '.'
+		return string
 
 
 	elif hasTag("►CSV IDEB ATING META◄", resposta):
@@ -260,14 +303,22 @@ def processSpecialAnswer(cid, resposta):
 		df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(df_temp) > 0:
 			municipio = df_temp['Nome do Município'].tolist()[0]
-			col = 'Atingiu_a_meta_AF_M_'
-			df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
-			string = '' 
-			for col in df_temp.columns:
-				string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
-
-			return string
-		return 'Desculpe, mas não temos informações sobre o índice desejado'
+		else:
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					df_temp = df_ideb[df_ideb['Nome do Município'].apply(lambda x: unidecode(x.lower())) == unidecode(municipio.lower())]
+					break
+			if found == False:
+				return 'Desculpe, não temos informações sobre este município'
+		col = 'Atingiu_a_meta_AF_M_'
+		df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
+		string = municipio + ' atinge a meta:\n' 
+		for col in df_temp.columns:
+			string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
+		return string
 
 
 	# TAGS PARA A BASE DO ISP
@@ -288,7 +339,15 @@ def processSpecialAnswer(cid, resposta):
 			return 'Desculpe, não temos informações para o ano correspondente.'
 		new_df = new_df[new_df['fmun'].apply(lambda x: unidecode(x.lower())) == municipio.lower()]
 		if len(new_df) == 0:
-			return 'Desculpe, não temos informações para o município correspondente.'
+			found = False
+			for mun in set(df_ideb['Nome do Município']):
+				if 1 - lev.distance(unidecode(municipio.lower()), unidecode(mun.lower()))/len(unidecode(mun.lower())) > 0.75:
+					municipio = mun
+					found = True
+					new_df = df_isp[df_isp['fmun'].apply(lambda x: unidecode(x.lower())) == unidecode(municipio.lower())]
+					break
+			if found == False:
+				return 'Desculpe, não temos informações para o município correspondente.'
 
 		if ' | ' in col:
 			col1 = col.split(' | ')[0]
