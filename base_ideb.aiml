@@ -7,7 +7,7 @@
 		<pattern>* TEMOS * BASE * IDEB</pattern>
 		<template>
 			<think><set name="topic">DADOS IDEB</set></think>
-			Temos, para os anos 2005 até 2015, os seguintes dados para cada município do Rio de Janeiro:\n
+			Temos, para os anos 2005 até 2015, os seguintes dados para cada município do Rio de Janeiro:\n\n
 			- IDEB do município por ano;\n
 			- Meta projetada do município no ano;\n
 			- Se o município atingiu a sua meta naquele ano.

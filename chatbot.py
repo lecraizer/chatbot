@@ -165,7 +165,8 @@ def processSpecialAnswer(cid, resposta):
 		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		ordem = idx+1
 		ideb = df_temp[col + year][idx]
-		return 'IDEB ' + municipio + ' em ' + year + ': ' + str(ideb) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
+		municipio = df_temp['Nome do Município'][idx]
+		return 'IDEB ' + municipio + ' em ' + year + ':\n\n' + str(ideb) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
 
 
 	elif hasTag("►CSV IDEB IDEB◄", resposta):
@@ -187,9 +188,9 @@ def processSpecialAnswer(cid, resposta):
 	
 		col = 'IDEB_AF_M_'
 		df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
-		string = 'IDEB ' + municipio + ' :\n\n' 
+		string = 'IDEB ' + municipio + ':\n\n' 
 		for col in df_temp.columns:
-			string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
+			string += '- Em ' + col[-4:] + ':\n\n' + str(df_temp[col].tolist()[0]) + '\n'
 		return string
 		# log.info(resposta)
 
@@ -229,7 +230,8 @@ def processSpecialAnswer(cid, resposta):
 		idx = df_temp.index[df_temp['Nome do Município'].apply(lambda x: unidecode(x.lower())) == municipio.lower()].tolist()[0]
 		ordem = idx+1
 		meta = df_temp[col + year][idx]
-		return 'A meta projetada do IDEB do ' + municipio + ' em ' + year + ': ' + str(meta) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
+		municipio = df_temp['Nome do Município'][idx]
+		return 'Meta projetada do IDEB ' + municipio + ' em ' + year + ':\n\n' + str(meta) + ' (' + str(ordem) + 'º de ' + str(len(df_ideb)) + ' municípios).'
 
 
 	elif hasTag("►CSV IDEB META◄", resposta):
@@ -315,7 +317,7 @@ def processSpecialAnswer(cid, resposta):
 				return 'Desculpe, não temos informações sobre este município'
 		col = 'Atingiu_a_meta_AF_M_'
 		df_temp = df_temp.loc[:, df_temp.columns.str.startswith(col)]
-		string = municipio + ' atinge a meta:\n' 
+		string = municipio + ' atinge a meta:\n\n' 
 		for col in df_temp.columns:
 			string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
 		return string

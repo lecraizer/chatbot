@@ -1,5 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<aiml version="1.0.1">
+<?xml version="2.0" encoding="UTF-8"?>
+<aiml version="2.0.1">
+
+	<category>
+	<pattern>* MOSTRE * VIDEO</pattern>
+		<template>
+		<![CDATA[<video width="500" controls src="https://gph.is/2h6iJsY"></video>]]>
+		</template>
+	</category> 
+
 
 
 	<!-- RESPOSTAS PARA CASO NÃO ENTRE EM NENHUM DOS PADRÕES ACIMA -->
