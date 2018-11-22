@@ -48,6 +48,17 @@
 		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
 	</category>
 
+	<category>
+		<pattern>BASE ISP</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+	<category>
+		<pattern>* CRIME</pattern>
+		<template><srai>O QUE TEMOS NA BASE DO ISP</srai></template>
+	</category>
+
+
 	<topic name="DADOS ISP">
 
 

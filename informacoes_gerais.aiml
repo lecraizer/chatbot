@@ -40,6 +40,11 @@
 	</category>
 
 	<category>
+		<pattern>* INFORMACOES * DISPONIVEIS</pattern>
+		<template><srai>O QUE VOCE SABE</srai></template>
+	</category>
+
+	<category>
 		<pattern>* INFORMACOES * DADOS</pattern>
 		<template><srai>O QUE VOCE SABE</srai></template>
 	</category>
