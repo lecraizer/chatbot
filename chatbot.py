@@ -11,6 +11,7 @@ from unidecode import unidecode
 import unicodedata
 import Levenshtein as lev
 import requests
+from telebot.apihelper import get_file
 # import logManager
 # import woofyManager
 # import imp
@@ -475,7 +476,8 @@ def listener(messages):
 
 			elif m.content_type == "voice":
 				print(m.voice)
-				response = requests.get("https://api.telegram.org/file/bot"+LOCAL_BOT_TOKEN+"/"+m.voice.file_id)
+				# response = requests.get("https://api.telegram.org/file/bot"+LOCAL_BOT_TOKEN+"/"+m.voice.file_id)
+				response = get_file(LOCAL_BOT_TOKEN, m.voice.file_id)
 				print(response)
 				answer = "Voz recebida!"
 				sendAnswer(cid, answer)
