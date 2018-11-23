@@ -3,4 +3,5 @@
 *.ipynb
 *.tmp
 *.DS_Store
-.venv
+mpvenv/
+venv/
