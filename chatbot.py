@@ -421,7 +421,9 @@ def listener(messages):
 			username = oUser.username
 
 			# removing accent from text
-			text = unidecode(m.text)
+
+			if m.content_type == "text":
+				text = unidecode(m.text)
 
 			answer = ""
 			
@@ -443,6 +445,11 @@ def listener(messages):
 				answer = userSession.mensagem('location')
 				answer = processSpecialAnswer(cid, answer)
 				sendAnswer(cid, answer)
+
+			elif m.content_type == "voice":
+				
+				sendAnswer(cid, answer)
+				pass
 
 			# logManager.logMessage(session_id, cid, uid, first_name, last_name, username, text, answer)
 			
