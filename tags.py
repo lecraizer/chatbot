@@ -56,6 +56,7 @@ def hasTag(tag, frase):
 
 
 def match_tag(resposta):
+
     if hasTag("►CSV IDEB IDEB ANO◄", resposta):
         variables = resposta.split(' ; ')[1:]
         municipio = variables[0]
@@ -247,6 +248,13 @@ def match_tag(resposta):
         for col in df_temp.columns:
             string += '- Em ' + col[-4:] + ': ' + str(df_temp[col].tolist()[0]) + '\n'
         return string
+
+
+    # if hasTag("►CSV IDEB MAIOR IDEB ANO◄", resposta):
+    #     variables = resposta.split(' ; ')[1:]
+    #     match_year = re.search('(20\d\d)', variables[0])
+    #     print(match_year)
+    #     return match_year
 
 
     # TAGS PARA A BASE DO ISP

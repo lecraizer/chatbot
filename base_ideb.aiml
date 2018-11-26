@@ -291,6 +291,18 @@
 		</category>
 
 
+		<!-- Maior IDEB município por ano -->
+		<category>
+			<pattern>* MAIOR IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>* MUNICIPIO * MAIOR IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+
+
 		<!-- IDEB município geral -->
 		<category>
 			<pattern>* IDEB DO MUNICIPIO *</pattern>
