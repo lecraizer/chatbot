@@ -305,7 +305,14 @@
 		</category>
 
 		<category>
-			<pattern>* HOMICIDIO CULPOSO</pattern>
+			<pattern>* CULPOSO</pattern>
+			<template>
+				<srai>HOMICIDIO CULPOSO</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>CULPOSO</pattern>
 			<template>
 				<srai>HOMICIDIO CULPOSO</srai>
 			</template>
@@ -323,7 +330,14 @@
 		</category>
 
 		<category>
-			<pattern>* HOMICIDIO DOLOSO</pattern>
+			<pattern>* DOLOSO</pattern>
+			<template>
+				<srai>HOMICIDIO DOLOSO</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>DOLOSO</pattern>
 			<template>
 				<srai>HOMICIDIO DOLOSO</srai>
 			</template>

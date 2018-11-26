@@ -12,6 +12,9 @@ import unicodedata
 import Levenshtein as lev
 import requests
 from telebot.apihelper import get_file
+import speech_recognition as sr
+from pydub import AudioSegment
+from gtts import gTTS
 # import logManager
 # import woofyManager
 # import imp
@@ -25,7 +28,7 @@ bot = telebot.TeleBot(LOCAL_BOT_TOKEN) # local (para teste e manutenção)
 aimlMgrDict = {}
 
 # open csv ideb database 
-# df_ideb = pd.read_csv('tabelas/educ_ideb_rede_municipal.csv')
+df_ideb = pd.read_csv('tabelas/educ_ideb_rede_municipal.csv')
 
 # open csv criminal database
 df_isp = pd.read_csv('tabelas/BaseMunicipioMensal.csv', encoding = "ISO-8859-1", sep=";")
@@ -392,10 +395,9 @@ def processSpecialAnswer(cid, resposta):
 	return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
 
 
-def sendAnswer(cid, resposta):
+def sendAnswer(cid, resposta, is_voice = False):
 	"""Process answers from AIML Kernel
-	"""
-	
+	"""	
 	try:
 		resposta = resposta.replace('\\n','\n')
 		
@@ -424,10 +426,26 @@ def sendAnswer(cid, resposta):
 				
 				
 			if markup != None:
-				bot.send_message(cid, resposta, reply_markup = markup)
+				if not is_voice:
+					bot.send_message(cid, resposta, reply_markup = markup)
+				else:
+					tts = gTTS(text=resposta, lang='pt')
+					tts.save("tmp/answer" + str(cid) + ".ogg")
+
+					with open("tmp/answer" + str(cid) + ".ogg", "rb") as f:
+						bot.send_voice(cid, f, reply_markup = markup)
+
 			else:
 				markup = types.ReplyKeyboardRemove(selective = False)
-				bot.send_message(cid, resposta, reply_markup = markup)
+
+				if not is_voice:
+					bot.send_message(cid, resposta, reply_markup = markup)
+				else:
+					tts = gTTS(text=resposta, lang='pt')
+					tts.save("tmp/answer" + str(cid) + ".ogg")
+
+					with open("tmp/answer" + str(cid) + ".ogg", "rb") as f:
+						bot.send_voice(cid, f, reply_markup = markup)
             
 	except Exception as inst:
 		print (type(inst))     # the exception instance
@@ -476,11 +494,45 @@ def listener(messages):
 
 			elif m.content_type == "voice":
 				print(m.voice)
-				# response = requests.get("https://api.telegram.org/file/bot"+LOCAL_BOT_TOKEN+"/"+m.voice.file_id)
+
 				response = get_file(LOCAL_BOT_TOKEN, m.voice.file_id)
 				print(response)
-				answer = "Voz recebida!"
-				sendAnswer(cid, answer)
+
+				audio = bot.download_file(response["file_path"])
+
+				with open("tmp/audio" + str(session_id) + ".ogg", "wb") as f:
+					f.write(audio)
+
+				ogg_file = AudioSegment.from_file("tmp/audio" + str(session_id) + ".ogg", format="ogg")
+				ogg_file.export("tmp/audio" + str(session_id) + ".wav", format="wav")
+
+				r = sr.Recognizer()
+
+				with sr.AudioFile("tmp/audio" + str(session_id) + ".wav") as source:
+				    audio_source = r.record(source)
+
+				try:
+					# Uses the default API key
+					# To use another API key: `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
+					text = r.recognize_google(audio_source, language="pt-BR")
+					print("You said: " + text)
+
+					answer = userSession.mensagem(text)
+					answer = processSpecialAnswer(cid, answer)
+
+					if type(answer) == list:
+						for ans in answer:
+							sendAnswer(cid, ans, is_voice = True)
+					else:
+						sendAnswer(cid, answer, is_voice = True)
+
+				except sr.UnknownValueError:
+					print("Google Speech Recognition could not understand audio")
+				except sr.RequestError as e:
+					print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
+				# answer = "Voz recebida!"
+				# sendAnswer(cid, answer)
 				pass
 
 			# logManager.logMessage(session_id, cid, uid, first_name, last_name, username, text, answer)
