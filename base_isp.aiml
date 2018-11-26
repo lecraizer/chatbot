@@ -83,6 +83,20 @@
 		</category>
 
 		<category>
+			<pattern>* HOMICIDIO</pattern>
+			<template>
+				<srai>HOMICIDIOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>HOMICIDIO</pattern>
+			<template>
+				<srai>HOMICIDIOS</srai>
+			</template>
+		</category>
+
+		<category>
 			<pattern>* HOMICIDIOS CULPOSOS OCORRERAM EM *</pattern>
 			<template>
 				<think>
@@ -154,7 +168,21 @@
 		</category>
 
 		<category>
-			<pattern>* ROUBO </pattern>
+			<pattern>* ROUBOS</pattern>
+			<template>
+				<srai>ROUBOS</srai>
+			</template>
+		</category>		
+
+		<category>
+			<pattern>* ROUBO</pattern>
+			<template>
+				<srai>ROUBOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>ROUBO</pattern>
 			<template>
 				<srai>ROUBOS</srai>
 			</template>
@@ -176,7 +204,21 @@
 		</category>
 
 		<category>
-			<pattern>* FURTO </pattern>
+			<pattern>* FURTOS</pattern>
+			<template>
+				<srai>FURTOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* FURTO</pattern>
+			<template>
+				<srai>FURTOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>FURTO</pattern>
 			<template>
 				<srai>FURTOS</srai>
 			</template>
@@ -202,6 +244,20 @@
 				<srai>LATROCINIOS</srai>
 			</template>
 		</category>
+
+		<category>
+			<pattern>* LATROCINIO</pattern>
+			<template>
+				<srai>LATROCINIOS</srai>
+			</template>
+		</category>		
+
+		<category>
+			<pattern>LATROCINIO</pattern>
+			<template>
+				<srai>LATROCINIOS</srai>
+			</template>
+		</category>
 		<!-- FIM DE LATROCÍNIOS -->
 
 
@@ -223,6 +279,20 @@
 				<srai>SEQUESTROS</srai>
 			</template>
 		</category>
+
+		<category>
+			<pattern>* SEQUESTRO</pattern>
+			<template>
+				<srai>SEQUESTROS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>SEQUESTRO</pattern>
+			<template>
+				<srai>SEQUESTROS</srai>
+			</template>
+		</category>				
 		<!-- FIM DE SEQUESTROS -->
 
 
@@ -240,6 +310,20 @@
 
 		<category>
 			<pattern>* ESTUPROS</pattern>
+			<template>
+				<srai>ESTUPROS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* ESTUPRO</pattern>
+			<template>
+				<srai>ESTUPROS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>ESTUPRO</pattern>
 			<template>
 				<srai>ESTUPROS</srai>
 			</template>
@@ -282,6 +366,20 @@
 
 		<category>
 			<pattern>* ESTELIONATOS</pattern>
+			<template>
+				<srai>ESTELIONATOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>ESTELIONATO</pattern>
+			<template>
+				<srai>ESTELIONATOS</srai>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* ESTELIONATO</pattern>
 			<template>
 				<srai>ESTELIONATOS</srai>
 			</template>

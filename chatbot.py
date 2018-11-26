@@ -16,15 +16,11 @@ import speech_recognition as sr
 from pydub import AudioSegment
 from gtts import gTTS
 # import logManager
-# import woofyManager
 # import imp
 from tags import match_tag
 
-#telebot = imp.load_source('telebot', '/home/chatbot/lib/pyTelegramBotAPI/telebot/__init__.py')
-
-# bot = telebot.TeleBot('712212286:AAHeG-tVXy-9rOWWDA9QiW7nPaz1n1r801E') # dev - maquina
-LOCAL_BOT_TOKEN = '796929920:AAGiRRwj-_fXv245dDFXX87lh5V4Aw1ItU8'
-bot = telebot.TeleBot(LOCAL_BOT_TOKEN) # local (para teste e manutenção)
+PRODUCTION_BOT_TOKEN = '712212286:AAHeG-tVXy-9rOWWDA9QiW7nPaz1n1r801E'
+bot = telebot.TeleBot(PRODUCTION_BOT_TOKEN) # local (para teste e manutenção)
 
 aimlMgrDict = {}
 
@@ -169,6 +165,8 @@ def sendAnswer(cid, resposta, is_voice = False):
 					with open("tmp/answer" + str(cid) + ".ogg", "rb") as f:
 						bot.send_voice(cid, f, reply_markup = markup)
 
+					bot.send_message(cid, resposta)
+
 			else:
 				markup = types.ReplyKeyboardRemove(selective = False)
 
@@ -180,6 +178,9 @@ def sendAnswer(cid, resposta, is_voice = False):
 
 					with open("tmp/answer" + str(cid) + ".ogg", "rb") as f:
 						bot.send_voice(cid, f, reply_markup = markup)
+
+					bot.send_message(cid, resposta)
+
             
 	except Exception as inst:
 		print (type(inst))     # the exception instance
@@ -227,10 +228,7 @@ def listener(messages):
 				sendAnswer(cid, answer)
 
 			elif m.content_type == "voice":
-				print(m.voice)
-
 				response = get_file(LOCAL_BOT_TOKEN, m.voice.file_id)
-				print(response)
 
 				audio = bot.download_file(response["file_path"])
 
@@ -249,9 +247,11 @@ def listener(messages):
 					# Uses the default API key
 					# To use another API key: `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
 					text = r.recognize_google(audio_source, language="pt-BR")
-					print("You said: " + text)
+
+					bot.send_message(cid, "Você disse: " + text)
 
 					answer = userSession.mensagem(text)
+
 					answer = processSpecialAnswer(cid, answer)
 
 					if type(answer) == list:
@@ -264,10 +264,6 @@ def listener(messages):
 					print("Google Speech Recognition could not understand audio")
 				except sr.RequestError as e:
 					print("Could not request results from Google Speech Recognition service; {0}".format(e))
-
-				# answer = "Voz recebida!"
-				# sendAnswer(cid, answer)
-				pass
 
 			# logManager.logMessage(session_id, cid, uid, first_name, last_name, username, text, answer)
 			
