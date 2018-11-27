@@ -291,18 +291,6 @@
 		</category>
 
 
-		<!-- Maior IDEB município por ano -->
-		<category>
-			<pattern>* MAIOR IDEB EM *</pattern>
-			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "2"/></template>
-		</category>
-
-		<category>
-			<pattern>* MUNICIPIO * MAIOR IDEB EM *</pattern>
-			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "3"/></template>
-		</category>
-
-
 		<!-- IDEB município geral -->
 		<category>
 			<pattern>* IDEB DO MUNICIPIO *</pattern>
@@ -323,6 +311,165 @@
 			<pattern>IDEB *</pattern>
 			<template><srai>IDEB MUNICIPIO <star/></srai></template>
 		</category>
+
+
+		<!-- Maior IDEB município por ano -->
+		<category>
+			<pattern>* MUNICIPIO * MAIOR IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+		
+		<category>
+			<pattern>* MUNICIPIO * MAIOR IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MUNICIPIO <star index = "2"/> MAIOR IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MUNICIPIO * MAIOR IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MUNICIPIO <star index = "2"/> MAIOR IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MAIOR IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>* MAIOR IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MAIOR IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MAIOR IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MAIOR IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR IDEB ANO◄ ; <star/></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR IDEB NO *</pattern>
+			<template><srai>MAIOR IDEB EM <star/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR IDEB PARA *</pattern>
+			<template><srai>MAIOR IDEB EM <star/></srai></template>
+		</category>
+
+
+		<!-- Menor IDEB município por ano -->
+		<category>
+			<pattern>* MUNICIPIO * MENOR IDEB EM *</pattern>
+			<template>►CSV IDEB MENOR IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+		
+		<category>
+			<pattern>* MUNICIPIO * MENOR IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MUNICIPIO <star index = "2"/> MENOR IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MUNICIPIO * MENOR IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MUNICIPIO <star index = "2"/> MENOR IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MENOR IDEB EM *</pattern>
+			<template>►CSV IDEB MENOR IDEB ANO◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>* MENOR IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MENOR IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MENOR IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MENOR IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MENOR IDEB EM *</pattern>
+			<template>►CSV IDEB MENOR IDEB ANO◄ ; <star/></template>
+		</category>
+
+		<category>
+			<pattern>MENOR IDEB NO *</pattern>
+			<template><srai>MENOR IDEB EM <star/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MENOR IDEB PARA *</pattern>
+			<template><srai>MENOR IDEB EM <star/></srai></template>
+		</category>
+
+
+		<!-- Maior META PROJETADA município por ano -->
+		<category>
+			<pattern>* MAIOR META * IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR META IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+
+		<category>
+			<pattern>* MAIOR META * IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MAIOR META <star index = "2"/> IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MAIOR META * IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MAIOR META <star index = "2"/> IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR META IDEB EM *</pattern>
+			<template>►CSV IDEB MAIOR META IDEB ANO◄ ; <star/></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR META IDEB NO *</pattern>
+			<template><srai>MAIOR META IDEB EM <star/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MAIOR META IDEB PARA *</pattern>
+			<template><srai>MAIOR META IDEB EM <star/></srai></template>
+		</category>
+
+
+		<!-- Menor META PROJETADA município por ano -->
+		<category>
+			<pattern>* MENOR META * IDEB EM *</pattern>
+			<template>►CSV IDEB MENOR META IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+
+		<category>
+			<pattern>* MENOR META * IDEB NO *</pattern>
+			<template><srai><star index = "1"/> MENOR META <star index = "2"/> IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>* MENOR META * IDEB PARA *</pattern>
+			<template><srai><star index = "1"/> MENOR META <star index = "2"/> IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MENOR META IDEB EM *</pattern>
+			<template>►CSV IDEB MENOR META IDEB ANO◄ ; <star/></template>
+		</category>
+
+		<category>
+			<pattern>MENOR META IDEB NO *</pattern>
+			<template><srai>MENOR META IDEB EM <star/></srai></template>
+		</category>
+
+		<category>
+			<pattern>MENOR META IDEB PARA *</pattern>
+			<template><srai>MENOR META IDEB EM <star/></srai></template>
+		</category>
+
 
 	</topic>
 
