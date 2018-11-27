@@ -9,6 +9,11 @@
 	</category>
 
 	<category>
+		<pattern>START</pattern>
+		<template><srai>OLA</srai></template>
+	</category>
+
+	<category>
 		<pattern>OLA *</pattern>
 		<template><srai>OLA</srai></template>
 	</category>
