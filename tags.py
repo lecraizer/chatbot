@@ -302,6 +302,20 @@ def match_tag(resposta):
         return 'O município de menor meta do IDEB no ano de ' + year + ' é ' + df_temp['Nome do Município'].iloc[0] + '.'
 
 
+    if hasTag("►CSV IDEB QUANTOS META IDEB ANO◄", resposta):
+        variables = resposta.split(' ; ')[1:]
+        match_year = re.search('(20\d\d)', variables[0])
+        if match_year:
+            year = match_year.group(1)
+        else:
+            return 'Desculpe, não entendi.'
+        col = 'Atingiu_a_meta_AF_M_' + year
+
+        df_temp = df_ideb[df_ideb[col] == 'SIM']
+        
+        return 'Um total de ' + str(len(df_temp)) + ' municípios atingiu a meta do IDEB em ' + year + '.'
+
+
     # TAGS PARA A BASE DO ISP
     elif hasTag("►CSV ISP ANO◄", resposta):
 

@@ -471,7 +471,52 @@
 		</category>
 
 
-	</topic>
+		<!-- Quantos municípios atingiram a meta por nao -->
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META * IDEB EM *</pattern>
+			<template>►CSV IDEB QUANTOS META IDEB ANO◄ ; <star index = "4"/></template>
+		</category>
 
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META * IDEB NO *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM <star index = "2"/> META <star index = "3"/> IDEB EM <star index = "4"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META * IDEB PARA *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM <star index = "2"/> META <star index = "3"/> IDEB EM <star index = "4"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META IDEB EM *</pattern>
+			<template>►CSV IDEB QUANTOS META IDEB ANO◄ ; <star index = "3"/></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META IDEB NO *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM <star index = "2"/> META IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM * META IDEB PARA *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM <star index = "2"/> META IDEB EM <star index = "3"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM META IDEB EM *</pattern>
+			<template>►CSV IDEB QUANTOS META IDEB ANO◄ ; <star index = "2"/></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM META IDEB NO *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM META IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+		<category>
+			<pattern>QUANTOS * ATINGIRAM META IDEB PARA *</pattern>
+			<template><srai>QUANTOS <star index = "1"/> ATINGIRAM META IDEB EM <star index = "2"/></srai></template>
+		</category>
+
+	</topic>
 
 </aiml>
