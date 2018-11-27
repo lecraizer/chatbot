@@ -4,13 +4,13 @@
 
 <!-- Saudações -->
 	<category>
-		<pattern>OLA *</pattern>
+		<pattern>OLA</pattern>
 		<template>Olá, bem vindo ao chatbot do MP. Em que posso ajudá-lo?</template>
 	</category>
 
 	<category>
-		<pattern>OLA</pattern>
-		<template>Olá, bem vindo ao chatbot do MP. Em que posso ajudá-lo?</template>
+		<pattern>OLA *</pattern>
+		<template><srai>OLA</srai></template>
 	</category>
 
 	<category>
@@ -31,6 +31,21 @@
 	<category>
 		<pattern>COMO VAI</pattern>
 		<template><srai>OLA</srai></template>
+	</category>
+
+	<category>
+		<pattern>OBRIGADO</pattern>
+		<template>De nada, tenha um ótimo dia.</template>
+	</category>
+
+	<category>
+		<pattern>OBRIGADO *</pattern>
+		<template><srai>OBRIGADO</srai></template>
+	</category>
+
+	<category>
+		<pattern>* OBRIGADO</pattern>
+		<template><srai>OBRIGADO</srai></template>
 	</category>
 
 </aiml>
