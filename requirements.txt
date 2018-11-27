@@ -28,6 +28,7 @@ prompt-toolkit==1.0.15
 ptyprocess==0.6.0
 PyAudio==0.2.11
 pycparser==2.19
+pydub==0.23.0
 Pygments==2.2.0
 pyTelegramBotAPI==3.6.6
 python-dateutil==2.7.5
@@ -37,6 +38,7 @@ pyxdg==0.25
 requests==2.20.1
 simplegeneric==0.8.1
 six==1.11.0
+SoundFile==0.10.2
 SpeechRecognition==3.8.1
 traitlets==4.3.2
 Unidecode==1.0.22
