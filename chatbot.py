@@ -228,7 +228,7 @@ def listener(messages):
 				sendAnswer(cid, answer)
 
 			elif m.content_type == "voice":
-				response = get_file(LOCAL_BOT_TOKEN, m.voice.file_id)
+				response = get_file(PRODUCTION_BOT_TOKEN, m.voice.file_id)
 
 				audio = bot.download_file(response["file_path"])
 
