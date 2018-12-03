@@ -130,7 +130,7 @@ def sendAnswer(cid, resposta, is_voice = False):
     """ 
     try:
         resposta = resposta.replace('\\n','\n')
-        
+        log.info( '%s: %s' % ('R', resposta) )
         if not resposta.replace('\n','').strip() == "":
             
             markup = None
@@ -212,6 +212,7 @@ def listener(messages):
             session_id = userSession.session_id
             
             if m.content_type == 'text':
+                log.info( '%s: %s' % ('P', m.text) )
                 if not reservedCommands(cid, text):
                     answer = userSession.mensagem(text)
                     answer = processSpecialAnswer(cid, answer)
@@ -247,7 +248,7 @@ def listener(messages):
                     # Uses the default API key
                     # To use another API key: `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
                     text = r.recognize_google(audio_source, language="pt-BR")
-
+                    log.info( '%s: %s' % ('PV', text) )
                     bot.send_message(cid, "Você disse: " + text)
 
                     answer = userSession.mensagem(text)
@@ -259,8 +260,10 @@ def listener(messages):
                     if type(answer) == list:
                         for ans in answer:
                             sendAnswer(cid, ans, is_voice = True)
+                            log.info( '%s: %s' % ('RV', ans) )
                     else:
                         sendAnswer(cid, answer, is_voice = True)
+                        log.info( '%s: %s' % ('RV', answer) )
 
                 except sr.UnknownValueError:
                     print("Google Speech Recognition could not understand audio")
