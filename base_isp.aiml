@@ -795,7 +795,7 @@
 		</category>
 
 		<category>
-			<pattern>* CRIME</pattern>
+			<pattern>* CRIMES</pattern>
 			<template>
 				<srai>O QUE TEMOS NA BASE DO ISP</srai>
 			</template>
