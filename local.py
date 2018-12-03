@@ -175,8 +175,9 @@ def sendAnswer(cid, resposta, is_voice = False):
                 else:
                     tts = gTTS(text=resposta, lang='pt')
                     tts.save("tmp/answer" + str(cid) + ".ogg")
-
+                    print("depois do save")
                     with open("tmp/answer" + str(cid) + ".ogg", "rb") as f:
+                        print("dentro do with")
                         bot.send_voice(cid, f, reply_markup = markup)
 
                     bot.send_message(cid, resposta)
@@ -252,8 +253,6 @@ def listener(messages):
                     bot.send_message(cid, "Você disse: " + text)
 
                     answer = userSession.mensagem(text)
-
-                    print(answer)
 
                     answer = processSpecialAnswer(cid, answer)
 
