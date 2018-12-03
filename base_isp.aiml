@@ -773,6 +773,28 @@
 		</category>
 
 		<category>
+			<pattern>* DE *</pattern>
+			<template>
+				<think>
+					<set name="municipio_selecionado"><star index="2"/></set>
+					<set name="topic">FINAL</set>
+				</think>
+				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* EM *</pattern>
+			<template>
+				<think>
+					<set name="ano_selecionado"><star index="2"/></set>
+					<set name="topic">FINAL</set>
+				</think>
+				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
+			</template>
+		</category>
+
+		<category>
 			<pattern>* CRIME</pattern>
 			<template>
 				<srai>O QUE TEMOS NA BASE DO ISP</srai>
