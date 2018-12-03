@@ -762,7 +762,7 @@
 		</category>
 
 		<category>
-			<pattern>* DO *</pattern>
+			<pattern>E DO *</pattern>
 			<template>
 				<think>
 					<set name="municipio_selecionado"><star index="2"/></set>
@@ -773,7 +773,7 @@
 		</category>
 
 		<category>
-			<pattern>* DE *</pattern>
+			<pattern>E DE *</pattern>
 			<template>
 				<think>
 					<set name="municipio_selecionado"><star index="2"/></set>
