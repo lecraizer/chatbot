@@ -765,7 +765,7 @@
 			<pattern>E DO *</pattern>
 			<template>
 				<think>
-					<set name="municipio_selecionado"><star index="2"/></set>
+					<set name="municipio_selecionado"><star/></set>
 					<set name="topic">FINAL</set>
 				</think>
 				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
@@ -776,7 +776,7 @@
 			<pattern>E DE *</pattern>
 			<template>
 				<think>
-					<set name="municipio_selecionado"><star index="2"/></set>
+					<set name="municipio_selecionado"><star/></set>
 					<set name="topic">FINAL</set>
 				</think>
 				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
