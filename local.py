@@ -252,6 +252,8 @@ def listener(messages):
 
                     answer = userSession.mensagem(text)
 
+                    print(answer)
+
                     answer = processSpecialAnswer(cid, answer)
 
                     if type(answer) == list:

@@ -715,7 +715,7 @@
 			<template>
 				<think>
 					<set name="ano_selecionado"><star/></set>
-					<set name="topic">DADOS ISP</set>
+					<set name="topic">FINAL</set>
 				</think>
 				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
 			</template>
@@ -723,5 +723,63 @@
 
 	</topic>
 
+	<topic name="MUNICIPIO FINAL">
+
+		<category>
+			<pattern>*</pattern>
+			<template>
+				<think>
+					<set name="municipio_selecionado"><star/></set>
+					<set name="topic">FINAL</set>
+				</think>
+				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
+			</template>
+		</category>
+
+	</topic>
+
+	<topic name="FINAL">
+
+		<category>
+			<pattern>ANO</pattern>
+			<template>
+				<think>
+					<set name="topic">ANO</set>
+				</think>
+				E qual ano você quer saber?
+				#button#2014;2015;2016;2017;2018;
+			</template>
+		</category>
+
+		<category>
+			<pattern>MUNICIPIO</pattern>
+			<template>
+				<think>
+					<set name="topic">MUNICIPIO FINAL</set>
+				</think>
+				E qual município você quer saber?
+			</template>
+		</category>
+
+		<category>
+			<pattern>* DO *</pattern>
+			<template>
+				<think>
+					<set name="municipio_selecionado"><star/></set>
+					<set name="topic">FINAL</set>
+				</think>
+				►CSV ISP ANO◄ ; <get name="dado"/> ; <get name="municipio_selecionado"/> ; <get name="ano_selecionado"/>
+			</template>
+		</category>
+
+		<category>
+			<pattern>* CRIME</pattern>
+			<template>
+				<srai>O QUE TEMOS NA BASE DO ISP</srai>
+			</template>
+		</category>
+
+
+	</topic>
 
 </aiml>

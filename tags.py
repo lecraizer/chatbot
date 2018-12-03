@@ -349,6 +349,6 @@ def match_tag(resposta):
             total = sum(new_df[col])
         municipio = new_df['fmun'].tolist()[0]
         string = municipio + ' tem uma quantidade total de ' + str(total) + ' ' + isp_column_converter[col] + ' para o ano de ' + str(year) + '.'
-        return [string, "Deseja saber algo mais? #button#Homicídios;Latrocínios;Roubos;Furtos;Sequestros;Estupros;Pessoas desaparecidas;Estelionatos;Quero saber sobre a base do IDEB"]
+        return [string, "Deseja saber sobre outro ano, município ou tipo de crime? #button#Ano;Município;Quero saber sobre outro tipo de crime;"]
 	
     return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
