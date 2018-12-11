@@ -16,7 +16,7 @@ class aimlManager():
 		self.kernel.learn("base_ideb.aiml")
 		self.kernel.learn("base_isp.aiml")
 		self.kernel.learn("outras_regras.aiml")
-		
+				
 		#self.kernel.respond("load aiml humanizacao")
 		#self.kernel.respond("load aiml processos")
 		#self.kernel.respond("load aiml onibus")
@@ -38,7 +38,6 @@ class aimlManager():
 
 	def deleteBrain(self):
 		self.kernel.resetBrain()
-		self.kernel.learn("rules.aiml")
 		
 	def resetBrain(self):
 		self.kernel.resetBrain()

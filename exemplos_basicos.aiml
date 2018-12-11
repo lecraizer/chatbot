@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1">
+
+    <!-- exemplo de srai -->
+
+    <category>
+        <pattern>OLA</pattern>
+        <template>Olá, eu sou o mpBot. Como você se chama?</template>
+    </category>
+
+    <category>
+        <pattern>START</pattern>
+        <template><srai>OLA</srai></template>
+    </category>
+
+    <category>
+        <pattern>OI</pattern>
+        <template><srai>OLA</srai></template>
+    </category>
+
+    <category>
+        <pattern>OLA *</pattern>
+        <template><srai>OLA</srai></template>
+    </category>
+
+    <category>
+        <pattern>OI *</pattern>
+        <template><srai>OLA</srai></template>
+    </category>
+
+
+    <!-- exemplo de star e that -->
+
+    <category>
+        <pattern>ME CHAMO *</pattern>
+        <that>_ COMO VOCÊ SE CHAMA</that>
+        <template>Prazer <star/></template>
+    </category>
+
+    <category>
+        <pattern>* ME CHAMO *</pattern>
+        <that>_ COMO VOCÊ SE CHAMA</that>
+        <template>Prazer <star index="2"/></template>
+    </category>
+
+    <category>
+        <pattern>*</pattern>
+        <that>_ COMO VOCÊ SE CHAMA</that>
+        <template>Prazer <star/></template>
+    </category>
+
+
+    <!-- exemplo de set, get, think-->
+
+
+    <category>
+        <pattern>VOCE PODE LEMBRAR * PARA MIM</pattern>
+        <template>
+            <think><set name="memoria"><star/></set></think>
+            Claro, sem problemas.
+        </template>
+    </category>
+
+    <category>
+        <pattern>O QUE FOI QUE EU DISSE</pattern>
+        <template>
+            voce disse: <get name="memoria"/>
+        </template>
+    </category>
+
+
+    <!-- exemplo de topic-->
+
+    <category>
+        <pattern>ENTRA NO TOPIC</pattern>
+        <template>entranto no topic <set name="topic">teste</set></template>
+    </category>
+
+    <category>
+        <pattern>ENTRE NO TOPIC</pattern>
+        <template>
+            <think><set name="topic">teste</set></think>
+            entranto no topic
+        </template>
+    </category>
+
+    <category>
+        <pattern>VOCE ESTA NO TOPIC</pattern>
+        <template>Não</template>
+    </category>
+
+    <topic name="TESTE">
+
+        <category>
+            <pattern>VOCE ESTA NO TOPIC</pattern>
+            <template>Sim</template>
+        </category>
+
+        <category>
+            <pattern>SAI DO TOPIC</pattern>
+            <template>
+                <think><set name="topic"></set></think>
+                saindo do topic
+            </template>
+        </category>
+
+    </topic>
+
+
+    <!-- exemplo de botão -->
+
+    <category>
+        <pattern>ME MOSTRE BOTOES</pattern>
+        <template>
+            Exemplo de botões
+            #button#Botão 1;Botão 2; Botão 3;
+        </template>
+    </category>
+
+    <category>
+        <pattern>BOTAO *</pattern>
+        <template>Você apertou o botão <star/></template>
+    </category>   
+
+
+    <category>
+        <pattern>*</pattern>
+        <template>Desculpe, não entendi.</template>
+    </category>
+
+
+</aiml>

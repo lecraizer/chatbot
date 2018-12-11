@@ -66,6 +66,9 @@ def getSession(cid):
     
     if not cid in aimlMgrDict:
         aimlMgrDict[cid] = aimlManager.aimlManager()
+
+        aimlMgrDict[cid].deleteBrain()
+        aimlMgrDict[cid].kernel.learn("exemplos_basicos.aiml")
         # sendAnswer(cid, processSpecialAnswer(cid, aimlMgrDict[cid].mensagem("start")))
         
     aimlMgrDict[cid].timestamp = time.time()
