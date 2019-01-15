@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "description": "Default Welcome Intent",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "testbot"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "Teste bot"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "testbot": {
+      "name": "testbot",
+      "url": "https://9b02f68f.ngrok.io"
+    }
+  },
+  "locale": "pt-BR"
+}
