@@ -11,6 +11,7 @@ from unidecode import unidecode
 import unicodedata
 import Levenshtein as lev
 import requests
+import pymongo
 from telebot.apihelper import get_file
 import speech_recognition as sr
 from pydub import AudioSegment
@@ -18,6 +19,7 @@ from gtts import gTTS
 # import logManager
 # import imp
 from tags import match_tag
+from stringUtils import *
 
 LOCAL_BOT_TOKEN = '796929920:AAGiRRwj-_fXv245dDFXX87lh5V4Aw1ItU8'
 bot = telebot.TeleBot(LOCAL_BOT_TOKEN) # local (para teste e manutenção)
@@ -25,37 +27,7 @@ bot = telebot.TeleBot(LOCAL_BOT_TOKEN) # local (para teste e manutenção)
 aimlMgrDict = {}
 
 # month converter: written way to number
-# month_converter = {'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12}
-
-
-def beforeTag(tag, frase):
-    if hasTag(tag,frase):
-        tagIni = frase.find(tag)
-        frase = frase[0:tagIni]
-    return frase  
-            
-
-def hasTag(tag, frase):
-    if tag in frase :
-        return True
-    return False
-   
-
-def removeTag(tag, frase):
-    if hasTag(tag,frase):
-        tagIni = frase.find(tag)
-        content = frase[tagIni + len(tag):len(frase)]
-        return content
-    return frase
-
-        
-def getTagContent(tag, frase, optToken = "♫"):
-    if hasTag(tag,frase):
-        content = removeTag(tag, frase)
-        content = content.split(optToken)
-        return content
-    return frase
-        
+# month_converter = {'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12}      
 
 def getSession(cid):
     """Get current user session - session expires after 20 minutes

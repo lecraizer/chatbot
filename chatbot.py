@@ -274,7 +274,6 @@ def listener(messages):
 
 bot.set_update_listener(listener)
 
-
 while True:
 	try:
 		bot.polling()
@@ -282,7 +281,3 @@ while True:
 		print(type(inst))     # the exception instance
 		print(inst.args)      # arguments stored in .args
 		print(inst)
-
-
-
-

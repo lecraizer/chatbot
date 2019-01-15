@@ -3,6 +3,8 @@
 *.ipynb
 *.tmp
 *.DS_Store
+*.ogg
+*.wav
 mpvenv/
 venv/
 tmp/
