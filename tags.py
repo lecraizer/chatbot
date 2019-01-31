@@ -18,6 +18,11 @@ df_ideb = pd.read_csv('tabelas/educ_ideb_rede_municipal.csv')
 # open csv criminal database
 df_isp = pd.read_csv('tabelas/BaseMunicipioMensal.csv', encoding = "ISO-8859-1", sep=";")
 
+# open csv health unity database
+df_unidades = pd.read_csv('tabelas/unidades_saude_rj.csv', sep=";")
+
+# open csv health database 
+df_marcacoes = pd.read_csv('tabelas/marcacoes_por_unidade.csv', sep=";")
 
 # column converter for ISP database
 isp_column_converter = {
@@ -351,4 +356,10 @@ def match_tag(resposta):
         string = municipio + ' tem uma quantidade total de ' + str(total) + ' ' + isp_column_converter[col] + ' para o ano de ' + str(year) + '.'
         return [string, "Deseja saber sobre outro ano, município ou tipo de crime? #button#Ano;Município;Quero saber sobre outros crimes;"]
 	
+
+    # TAGS PARA A BASE DO SISREG
+    elif hasTag("►CSV SISREG QUANTAS UNIDADES◄", resposta):
+        return 'Há ' + str(len(df_unidades)) + ' casas de saúde no município do Rio de Janeiro.'
+
+
     return resposta # caso seja uma pergunta mais genérica, em que não compete buscar em algum banco 
