@@ -34,7 +34,7 @@
     <category>
         <pattern>ME CHAMO *</pattern>
         <that>_ COMO VOCÊ SE CHAMA</that>
-        <template>Prazer <star/></template>
+        <template>Prazer <set name="nome"><star/></set></template>
     </category>
 
     <category>
@@ -64,6 +64,9 @@
     <category>
         <pattern>O QUE FOI QUE EU DISSE</pattern>
         <template>
+<!--             <condition name = "memoria" value = "">
+                Você ainda não disse nada.
+            </condition> -->
             voce disse: <get name="memoria"/>
         </template>
     </category>
